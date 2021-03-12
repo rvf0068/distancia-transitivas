@@ -1,0 +1,199 @@
+\documentclass{article}
+
+\usepackage{tkz-graph}
+\usepackage{tkz-berge}
+\usepackage[spanish]{babel}
+\SetVertexNotLabeledSmall
+
+\title{Las gráficas cúbicas distancia-transitivas}
+\date{}
+\author{}
+
+\begin{document}
+\maketitle
+
+Una gráfica es \emph{distancia-transitiva} si para cualesquiera
+vértices $u,v,w,x$ tales que $d(u,v)=d(w,x)$ se tiene que existe un
+automorfismo de la gráfica $\phi$ tal que $\phi(u)=w$ y $\phi(v)=x$.
+
+La gráfica $G$ de la figura~\ref{fig:58} no es distancia-transitiva. Los dos vértices rojos están a distancia 2, como lo están también los vértices azules. Pero no existe un automorfismo $\phi\colon G\to G$ que envíe los vértices rojos a los azules, pues los azules están en un ciclo de 4 y los rojos no.
+
+\begin{figure}[htb]
+  \centering
+  \begin{tikzpicture}[rotate=30]
+    \grCycle[prefix=a,RA=2]{6}
+    \grCycle[prefix=b,RA=1]{6}
+    \EdgeIdentity{a}{b}{6}
+    \AddVertexColor{red}{a0,a4}
+    \AddVertexColor{blue}{a3,b2}
+  \end{tikzpicture}
+  \caption{$G$ no es distancia-transitiva}
+  \label{fig:58}
+\end{figure}
+
+De acuerdo a \cite{MR0286693}, hay exactamente 12 gráficas cúbicas distancia transitivas. Tales gráficas son:
+
+\begin{enumerate}
+\item La gráfica $K_4$ (figura~\ref{fig:k4}) y la gráfica $K_{3,3}$ (ver figura~\ref{fig:k33}).
+  \begin{figure}
+    \centering
+    \begin{minipage}[t]{0.4\linewidth}
+      \centering
+      \begin{tikzpicture}
+        \grTetrahedral[RA=1.2]
+      \end{tikzpicture}
+      \caption{$K_4$}
+      \label{fig:k4}
+    \end{minipage}
+    \begin{minipage}[t]{0.4\linewidth}
+      \centering
+      \begin{tikzpicture}
+        \grCompleteBipartite[RA=1.2,RB=1.2,RS=2]{3}{3}
+      \end{tikzpicture}
+      \caption{$K_{3,3}$}
+      \label{fig:k33}
+    \end{minipage}
+  \end{figure}
+\item El cubo (ver figura~\ref{fig:cubo})
+  \begin{figure}
+    \centering
+    \begin{tikzpicture}
+      \GraphInit[vstyle=Art]
+      \grCubicalGraph[RA=2,RB=1,rotation=45]
+    \end{tikzpicture}
+    \caption{Cubo}
+    \label{fig:cubo}
+  \end{figure}
+
+\item La gráfica de Petersen (ver figura~\ref{fig:petersen})
+    \begin{figure}
+      \centering
+      \begin{tikzpicture}
+        \GraphInit[vstyle=Art]
+        \SetGraphShadeColor{white}{black}{gray}
+        \grPetersen[RA=2, RB=0.8, rotation=90]
+      \end{tikzpicture}
+    \caption{Gráfica de Petersen}
+      \label{fig:petersen}
+    \end{figure}  
+
+\item La gráfica de Heawood (ver figura~\ref{fig:heawood})
+  \begin{figure}
+    \centering
+    \begin{tikzpicture}
+      \SetVertexForPresentation{white}{gray}{lightgray}
+      \grLCF[RA=2]{5,-5}{7}
+    \end{tikzpicture}
+    \caption{Gráfica de Heawood}
+    \label{fig:heawood}
+  \end{figure}
+
+\item La gráfica de Pappus (ver figura~\ref{fig:pappus})
+  \begin{figure}
+    \centering
+    \begin{tikzpicture}
+      \GraphInit[vstyle=Simple]
+      \grLCF[RA=2]{5,7,-7,7,-7,-5}{3}
+      \end{tikzpicture}
+    \caption{Gráfica de Pappus}
+    \label{fig:pappus}
+  \end{figure}
+
+\item La gráfica de Desargues (ver figura~\ref{fig:desargues})
+  \begin{figure}
+    \centering
+    \begin{tikzpicture}
+      \GraphInit[vstyle=Art]
+      \SetGraphShadeColor{green!40!black}{green}{teal}
+      \grGeneralizedPetersen[RA=2,RB=1]{10}{3}
+    \end{tikzpicture}
+    \caption{Gráfica de Desargues}
+    \label{fig:desargues}
+  \end{figure}
+
+\item El dodecaedro (ver figura~\ref{fig:dodecaedro})
+  \begin{figure}
+    \centering
+    \begin{tikzpicture}
+      \begin{scope}[rotate=90]
+        \GraphInit[vstyle=Welsh]
+        \grDodecahedral[form=2,RA=3,RB=2.1,RC=1.35,RD=0.6]
+     \end{scope}
+    \end{tikzpicture}
+    \caption{Dodecaedro}
+        \label{fig:dodecaedro}
+  \end{figure}
+
+\item La gráfica de Coxeter (ver figura~\ref{fig:coxeter})
+  \begin{figure}
+    \centering
+    \begin{tikzpicture}
+      \SetVertexForPresentation{white}{orange}{red}
+      \grCycle[RA=3.75,prefix=a]{7}
+      \begin{scope}[rotate=-20]
+        \grEmptyCycle[RA=3,prefix=b]{7}
+      \end{scope}
+      \grCirculant[RA=2.25,prefix=c]{7}{2}
+      \grCirculant[RA=1.05,prefix=d]{7}{3}
+      \EdgeIdentity{a}{b}{7} 
+      \EdgeIdentity{b}{c}{7} 
+      \EdgeIdentity{b}{d}{7} 
+    \end{tikzpicture}
+    \caption{Gráfica de Coxeter}
+    \label{fig:coxeter}
+  \end{figure}
+
+\item La gráfica de Tutte-Coxeter (ver figura~\ref{fig:tuttecoxeter})
+  \begin{figure}
+    \centering
+    \begin{tikzpicture}
+      \SetVertexForPresentation{white}{white}{blue}
+      \grCycle[rotation=5,RA=3.75,prefix=a]{10}
+      \grCirculant[rotation=-10,RA=2.7,prefix=b]{10}{5}
+      \grCirculant[rotation=-36,RA=1.65,prefix=c]{10}{3}
+      \EdgeIdentity{a}{b}{10} 
+      \EdgeIdentity{b}{c}{10} 
+    \end{tikzpicture}    
+    \caption{Gráfica de Tutte-Coxeter}
+    \label{fig:tuttecoxeter}
+  \end{figure}
+
+\item La gráfica de Foster (ver figura~\ref{fig:foster})
+  \begin{figure}
+    \centering
+    \begin{tikzpicture}
+      \grLCF[RA=6]{17,-9,37,-37,9,-17}{15}
+    \end{tikzpicture}    
+    \caption{Gráfica de Foster}
+    \label{fig:foster}
+  \end{figure}
+
+\item La gráfica de Biggs-Smith
+  \begin{figure}
+    \centering
+    \begin{tikzpicture}
+      \SetVertexForPresentation{red}{white}{olive}
+      \grCirculant[RA=1.5,prefix=a]{17}{8}
+      \grEmptyCycle[RA=2.5,prefix=b]{17}
+      \EdgeIdentity{a}{b}{17}
+      \grCirculant[rotation=-360/34,RA=4,prefix=c]{17}{4}
+      \grCirculant[rotation=5,RA=5,prefix=d]{17}{2}
+      \EdgeIdentity{b}{d}{17}
+      \grEmptyCycle[rotation=-5,RA=6,prefix=e]{17}{2}
+      \EdgeIdentity{b}{e}{17}
+      \grCycle[RA=7,prefix=f]{17}
+      \EdgeIdentity{e}{c}{17}
+      \EdgeIdentity{e}{f}{17}
+    \end{tikzpicture}    
+    \caption{Gráfica de Biggs-Smith}
+    \label{fig:biggssmith}
+  \end{figure}
+
+  
+\end{enumerate}
+
+  
+\bibliography{archivo}
+\bibliographystyle{plain}
+
+\end{document}
